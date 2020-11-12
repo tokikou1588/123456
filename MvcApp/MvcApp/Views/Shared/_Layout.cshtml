@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>@ViewBag.Title</title>   
+        <style type="text/css">
+            .hide{display:none }
+            .progress{z-index: 2000}
+            .mask{position: fixed;top: 0;right: 0;bottom: 0;left: 0; z-index: 1000; background-color: #000000}
+        </style>     
+        <script type="text/javascript" src="@Url.Content("/Scripts/jquery-1.7.1.min.js")"></script>
+        <script type="text/javascript">
+            $(function () {
+                $.ajax2 = function (options) {
+                    var img = $("#progressImgage");
+                    var mask = $("#maskOfProgressImage");
+                    var complete = options.complete;
+                    options.complete = function (httpRequest, status) {
+                        img.hide();
+                        mask.hide();
+                        if (complete) {
+                            complete(httpRequest, status);
+                        }
+                    };
+                    options.async = true;
+                    img.show().css({
+                        "position": "fixed",
+                        "top": "50%",
+                        "left": "50%",
+                        "margin-top": function () { return -1 * img.height() / 2; },
+                        "margin-left": function () { return -1 * img.width() / 2; }
+                    });
+                    mask.show().css("opacity", "0.1");
+                    $.ajax(options);
+                };
+            });
+            $('#btn').click(function () {
+                $.ajax({
+                    url: '@Url.Action("GetContacts")', //发送后台的url
+                    type: 'get', //请求方式
+                    dataType: 'json', //后台返回的数据类型
+                    beforeSend: function () {
+                        $("#loading").html("<img src='~/Images/ajax-loader.gif' />"); //在请求后台数据之前显示loading图标
+                    }
+                    
+                });
+            });
+        </script>
+    </head>
+    <body> 
+        <div>@RenderBody()</div>
+        <img id="progressImgage" class="progress hide" alt="" src="@Url.Content("~/Images/ajax-loader.gif")"/>
+    <div id="maskOfProgressImage" class="mask hide"></div>
+    <br/>
+        <div>
+            <input type="text">
+            <button id="btn">提交1</button>
+            <div id="loading"></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax加载loading图标</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<input type="text">
+<button id="btn">提交</button>
+<div id="loading"></div>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script>
+    //点击提交按钮请求后台数据
+    $('#btn').click(function () {
+        $.ajax({
+            url: '@Url.Action("GetContacts1")',
+            type: 'get', //请求方式
+            dataType: 'json', //后台返回的数据类型
+            beforeSend: function () {
+                $("#loading").html("<img src='~/Images/ajax-loader.gif' />"); //在请求后台数据之前显示loading图标
+            },
+            success: function (data) {  //data为后台返回的数据
+                $("#loading").empty(); //ajax返回成功，清除loading图标
+                alert("ajax请求成功!");
+            },
+            error: function () { //请求数据失败
+                alert("服务器繁忙!")
+            }
+        });
+    });
+</script>
+</body>
+</html>

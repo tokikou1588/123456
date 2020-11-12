@@ -1,0 +1,44 @@
+﻿
+<div >
+    <table>2</table><br/>
+    <a href="#" id="load">Load</a>
+    <div id="result">
+        
+    </div>
+    <br/>
+    <table>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+    </table>
+    
+    <input type="text">
+    <button id="btn">提交</button>
+    <div id="loading"></div>
+</div>
+<script type="text/javascript">
+    $("#load").click(function () {
+        $.ajax2({
+            url: '@Url.Action("GetContacts")',
+            success: function(result)
+            {
+                $("#result").html(result);
+            }
+        });
+    });
+    //点击提交按钮请求后台数据
+    $("#btn").click(function () {
+        $.ajax({
+            url: '@Url.Action("GetContacts")',
+            success: function (data) {  //data为后台返回的数据
+                $("#loading").empty(); //ajax返回成功，清除loading图标
+                alert("ajax请求成功!");
+            },
+            error: function () { //请求数据失败
+                alert("服务器繁忙!");
+            }
+        });
+    });
+</script>
