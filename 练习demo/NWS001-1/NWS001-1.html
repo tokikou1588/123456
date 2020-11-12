@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="NWS001-1.js"> </script>
+    <link type="text/css" rel="styleSheet" href="NWS001-1.css" />
+</head>
+<body>
+    <div class="formDiv">
+        <form action="~/ZaiLiuKa/ZaiLiuKa/Search" method="post" id="form1" onchange="excuteAjax()">
+            <label>
+                在留番号 <input type="text" name="zaiLiuKaNo" style="margin-right:100px;margin-left:50px">   氏名 <input type="text" name="userName" style="margin-left:50px">
+            </label>
+            <br /><br /><br />
+            <label>
+                性别 <input type="radio" name="sex" id="sex1" value="0" style="margin-left:75px">男<input type="radio" name="sex" id="sex2" value="1" style="margin-left:50px">女
+            </label>
+            <br /><br /><br />
+            <label>
+                在留資格<input type="checkbox" name="qualifications">技術.人文知識.国際業務<input type="checkbox" name="qualifications">定住者
+                <input type="checkbox" name="qualifications">永住者<input type="checkbox" name="qualifications">家族滞在
+                <input type="checkbox" name="qualifications">経営.管理
+            </label>
+            <br /><br /><br />
+            <label>
+                志望動機<input type="checkbox" name="volunteer">旅行する<input type="checkbox" name="volunteer">留学する
+                <input type="checkbox" name="volunteer" style="margin-left:40px">研修する<input type="checkbox" name="volunteer" style="margin-left:40px">仕事する
+                <input type="checkbox" name="volunteer" style="margin-left:30px">投資貿易<input type="checkbox" name="volunteer" style="margin-left:55px">外交行政
+            </label>
+            <br /><br /><br />
+            <label>
+                生年月日<input type="datetime" name="birthday" style="margin-right:100px;margin-left:50px" />
+            </label>
+            <br /><br /><br />
+            <label>
+                許可期間<input type="datetime" name="permitTime" style="margin-right:100px;margin-left:50px" />
+            </label>
+            <br /><br /><br />
+            <label>
+                居住地<select onchange="city(this)" style="margin-right:100px;margin-left:65px">
+                    <option value="-1">都道府县</option>
+                    <option value="0">東京都</option>
+                    <option value="1">千葉県</option>
+                    <option value="2">埼玉県</option>
+                    <option value="3">神奈川県</option>
+                </select>
+                <label id="adressArea"></label>
+                <input type="button" value="検索" id="sumbitButton" onclick="NWS001.search()" style="margin-right: 80px; background-color:dodgerblue; width: 70px; height: 40px; ">
+            </label><br /><br />
+        </form>
+    </div>
+    <div class="tableDivS" id="tableDiv">
+        <table border="1" style="margin:20px 30px 30px 20px;" id="table1">
+            <tr id="th">
+                <th class="lsize">在留番号</th>
+                <th class="lsize">氏名</th>
+                <th class="lsize">生年月日</th>
+                <th class="lsize">性别</th>
+                <th class="lsize">在留資格</th>
+                <th class="lsize">居住地</th>
+                <th class="lsize">志望動機</th>
+                <th class="lsize">許可期間</th>
+                <th class="msize">削除</th>
+                <th class="msize"><input type="checkbox" class="specialCheckBox" id="selectAll" onkeydown="" onchange=" NWS001.checkAll(this.checked)" /></th>
+            </tr>
+            <tr id="test">
+                <td>情報無し</td>
+                <td>情報無し</td>
+                <td>情報無し</td>
+                <td>情報無し</td>
+                <td>情報無し</td>
+                <td>情報無し</td>
+                <td>情報無し</td>
+                <td>情報無し</td>
+                <td><input type="button" value="削除"></td>
+                <td><input type="checkbox" name="chooseBox" value=""></td>
+            </tr>
+        </table>
+    </div>
+    <input type="button" value="增加" style="margin-left: 450px; background-color: dodgerblue; width: 90px; height: 40px; " onclick="NWS001.add()" />
+    <input type="button" value="一括削除" style="margin-left: 150px; background-color: dodgerblue; width: 90px; height: 40px;" onclick="NWS001.delAll()" />
+</body>
+</html>
