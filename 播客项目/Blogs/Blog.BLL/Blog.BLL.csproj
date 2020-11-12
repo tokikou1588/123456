@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8DCF735A-9BBD-4E2A-815C-63A9054817C7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Blog.BLL</RootNamespace>
+    <AssemblyName>Blog.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BlogArticleBLL.cs" />
+    <Compile Include="BlogArticleCateBLL.cs" />
+    <Compile Include="exp\BlogArticleBLL_Exp.cs" />
+    <Compile Include="exp\BlogArticleCateBLL_Exp.cs" />
+    <Compile Include="BlogCommentArticleBLL.cs" />
+    <Compile Include="BlogCommentPhotoBLL.cs" />
+    <Compile Include="BlogPhotoAlblumBLL.cs" />
+    <Compile Include="BlogPhotoBLL.cs" />
+    <Compile Include="BlogUserBLL.cs" />
+    <Compile Include="EnumerationBLL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Blog.Common\Blog.Common.csproj">
+      <Project>{9a7f4bb4-60b2-4c06-933e-763a043f164e}</Project>
+      <Name>Blog.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Blog.DAL\Blog.DAL.csproj">
+      <Project>{1d7ad9c5-8489-482b-96ef-b706f3a351fa}</Project>
+      <Name>Blog.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Blog.Model\Blog.Model.csproj">
+      <Project>{7f07cfc9-e880-44fe-bcea-719094042813}</Project>
+      <Name>Blog.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

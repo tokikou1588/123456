@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="/css/css.css" rel="stylesheet" />
+    <script src="/js/jquery-1.9.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //给id为chkAll input元素绑定点击事件
+            $("#chkAll").click(function () {
+                //1.0 先获取chkAll 元素的选择状态
+                var ischked = this.checked;
+                //2.0 
+                $("input[name='chk']").each(function () {
+                    this.checked = ischked;
+                });
+            });
+
+
+        });
+    </script>
+</head>
+<body>
+    <div class="outScop">
+        <div class="topScop">
+            <ul>
+                <li>欢迎【ivan】登录</li>
+                <li><a href="#">返回播客首页</a></li>
+                <li><a href="/logout.ashx">退出</a></li>
+            </ul>
+        </div>
+        <div class="mainScop">
+            <div class="title">我的博客后台管理</div>
+            <div class="leftMenu">
+                <ul>
+                    <li class="level1"><a href="#">日志管理</a></li>
+                    <li>
+                        <ul>
+                            <li class="level2"><a href="/BlogCateList.ashx">>>文章分类管理(ashx)</a></li>
+                            <li class="level2"><a href="/Mgr/BlogArticleList.aspx">>>文章管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="level1"><a href="#">相册管理</a></li>
+                    <li>
+                        <ul>
+                            <li class="level2"><a href="#">>>相册列表</a></li>
+                            <li class="level2"><a href="#">>>上传照片</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="rightContent">
+                <form action="/DeleteCate.ashx" method="post">
+                    <table class="list">
+                        <tr>
+                            <td colspan="7">
+                                <input type="submit" value="批量删除" /></td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input id="chkAll" type="checkbox" value="全选" /></th>
+                            <th>文章类别ID</th>
+                            <th>作者id</th>
+                            <th>博客分类名称</th>
+                            <th>状态</th>
+                            <th>添加日期</th>
+                            <th></th>
+                        </tr>
+                        ${trs}
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="footScop">
+            <div>版权属于11期班，违者必究</div>
+        </div>
+    </div>
+</body>
+</html>

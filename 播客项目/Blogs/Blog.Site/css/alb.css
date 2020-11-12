@@ -1,0 +1,45 @@
+﻿#abtitle {
+    height: 30px;
+    background-color: #0094ff;
+    color: white;
+    font-size: 18px;
+    line-height: 30px;
+    padding-left: 15px;
+}
+
+#ablist {
+    border: dashed 1px #000;
+    min-height: 500px;
+    overflow: auto;
+    height: 500px;
+}
+
+    #ablist .abldiv {
+        height: 170px;
+        width: 165px;
+        display: inline-block;
+        margin-left: 3px;
+        border: solid 1px #000;
+    }
+
+        #ablist .abldiv li {
+            text-align: center;
+            margin-top: 5px;
+            padding: 3px;
+        }
+
+.abldiv img {
+    cursor: pointer;
+}
+
+
+#edit {
+    display: none;
+    position: absolute;
+    top: 200px;
+    left: 300px;
+}
+
+    #edit td {
+        background-color:#ddc2c2;
+    }

@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="/css/css.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="outScop">
+        <div class="topScop">
+            <ul>
+                <li>欢迎【ivan】登录</li>
+                <li><a href="#">返回播客首页</a></li>
+                <li><a href="/logout.ashx">退出</a></li>
+            </ul>
+        </div>
+        <div class="mainScop">
+            <div class="title">我的博客后台管理</div>
+            <div class="leftMenu">
+                <ul>
+                    <li class="level1"><a href="#">日志管理</a></li>
+                    <li>
+                        <ul>
+                            <li class="level2"><a href="/BlogCateList.ashx">>>文章分类管理(ashx)</a></li>
+                            <li class="level2"><a href="/Mgr/BlogArticleList.aspx">>>文章管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="level1"><a href="#">相册管理</a></li>
+                    <li>
+                        <ul>
+                            <li class="level2"><a href="#">>>相册列表</a></li>
+                            <li class="level2"><a href="#">>>上传照片</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="rightContent">
+                <form action="/cateEdit.ashx" method="post">
+                    <input type="hidden" name="id" value="${id}" />
+                    <table class="list">
+                        <tr>
+                            <th>博客分类名称：</th>
+                            <td>
+                                <input type="text" name="name" value="${name}" /></td>
+                        </tr>
+                        <tr>
+                            <th>博客分类备注：</th>
+                            <td>
+                                <textarea name="Remark" rows="8" cols="50">${remark}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>博客分类状态：</th>
+                            <td>
+                                <select name="status">
+                                    ${statuopts}
+                                </select>
+                            </td>
+                        </tr>
+                         <tr>
+                            <th></th>
+                            <td>
+                              <input type="submit" value="编辑" />
+                                <input type="button" onclick="window.location = '/BlogCateList.ashx'" value="返回到列表" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="footScop">
+            <div>版权属于11期班，违者必究</div>
+        </div>
+    </div>
+</body>
+</html>
