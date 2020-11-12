@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script type="text/javascript">
+        var obj = new Object();
+        obj.Name = "ivan";
+        obj.Age = 28;
+
+        var obj1 = {
+            "Name": "ivan", "Age": 28
+        };
+
+        //json 数据格式为：js对象的字面量表示法的字符串表示形式，但是要注意：标准的json格式键值一定是要用双引号引起来
+        var jsonStr = '{ "Name": "ivan", "Age": "28" }';
+        //如何将json字符串转换成js对象呢？
+        var obj2 = JSON.parse(jsonStr);
+        alert(obj2.Name + "  Age=" + obj2.Age);
+
+        //js中数组的字面量表示法如何写？
+        var arr = [{ "Name": "ivan", "Age": 28 }, { "Name": "james", "Age": 29 }];
+        //数组的json字符串表示
+        var jsonArr = ' [{ "Name": "ivan", "Age": 28 }, { "Name": "james", "Age": 29 }]';
+
+
+    </script>
+</head>
+<body>
+</body>
+</html>

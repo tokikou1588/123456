@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="js/common.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            ajaxHelper.ajaxGet("getgroupinfo.ashx", function (jsarr) {
+                //开始创建表格
+                //1.0 遍历jsarr 数组对象  [{"GroupId":"1","GroupName":"老板"},{"GroupId":"2","GroupName":"老板1"},{},{}....]
+                var tbobj = document.getElementById("tb");
+                for (var i = 0; i < jsarr.length; i++) {
+                    //2.0 获取当前jsarr数组中的某个对象
+                    var item = jsarr[i]; //{"GroupId":"1","GroupName":"老板"}
+
+                    //3.0 开始向表格对象中添加tr
+                    var tr = tbobj.insertRow(-1);
+
+                    //4.0 向tr属性中添加td
+                    tr.insertCell(-1).innerHTML = item.GroupId;
+                    tr.insertCell(-1).innerHTML = item.GroupName;
+                }
+            });
+        }        
+    </script>
+</head>
+<body>
+    <table id="tb">
+        <tr>
+            <th>分组id</th>
+            <th>分组名称</th>
+        </tr>
+    </table>
+</body>
+</html>

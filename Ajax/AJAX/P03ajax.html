@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script type="text/javascript">
+        //利用异步对象进行get请求
+        function ajaxGet() {
+            //1.0 创建异步对象
+            var xhr = new XMLHttpRequest();
+
+            //2.0 设置参数
+            // 第一个参数:表示当前异步对象请求的方法(get,post)
+            //第二个参数: 表示请求的后台服务器页面
+            //第三个参数：表示当前请求是否为异步请求 true:异步请求（不会阻塞浏览器的主线程） false:同步请求（阻塞浏览器的主线程）
+            //注意：在IE下如果url在每次请求不变化，则结果会被缓存
+            //解决如下：1、在url后面添加随机参数 rid=Math.random()  例如写法：xhr.open("get", "getServerTime.ashx?tmd="+Math.random(), true);
+            //2、直接在请求报文头中添加：If-Modified-Since :"0"            
+            //xhr.open("get", "getServerTime.ashx?tmd="+Math.random(), true);
+            xhr.open("get", "getServerTime.ashx?id=100&name=ivan", true);
+
+            //3.0 防止浏览器对ajax get请求的缓存
+            xhr.setRequestHeader("If-Modified-Since", "0");
+
+            //4.0 设置回调函数
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        // alert(xhr.responseText);
+                        document.getElementById("div1").innerHTML = xhr.responseText;
+                    }
+                }
+            }
+
+            //5.0  发送请求
+            xhr.send(null);
+        }
+
+        //利用异步对象进行post请求
+        function ajaxPost() {
+            // 1.0
+            var xhr = new XMLHttpRequest();
+
+            //2.0
+            xhr.open("post", "getServerTime.ashx", true);
+
+            //3.0 为了是当前post请求参数能够被服务器正常接收看，需要设置
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            //4.0 
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        alert(this.responseText);
+                    }
+                }
+            }
+
+            //5.0 如果是post请求，则将参数利用send（）方法传入到服务器，写法：id=500&name=abc
+            xhr.send("id=500&name=abc");
+        }
+
+    </script>
+</head>
+<body>
+    <img src="20130225101635024406.GIF" />
+    <div id="div1" style="border: 1px solid red; height: 40px;"></div>
+    <input type="button" value="ajax get请求" onclick="ajaxGet()" />
+    <input type="button" value="ajax post请求" onclick="ajaxPost()" />
+</body>
+</html>

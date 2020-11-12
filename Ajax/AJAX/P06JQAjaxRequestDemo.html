@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="js/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            //1.0 利用$.get来请求getgroupinfo.ashx (注意：一定要指定最后一个参数为具体的响应字符串的格式什么)
+            $.get(
+                "getgroupinfo.ashx" // ajax要请求的服务器页面
+                , "id=1&name=123" // 传入服务器页面的参数
+                , function (jsobj) //回调函数，注意：如果没有指定第四个参数，当前jsobj 就是服务器响应回来的响应报文体中的字符串
+                {
+               alert(jsobj[0].GroupName+" --1");               
+            }
+            , "json"  //指定服务器响应回来的数据格式是什么(格式包括：json,xml 具体可以看jquery的帮助文档)
+            );
+
+            //2.0 利用$.getJSON来请求getgroupinfo.ashx 
+            $.getJSON("getgroupinfo.ashx", null, function (jsobj) {
+                alert(jsobj[1].GroupName + " --2");
+            });
+
+            //3.0 利用$.post() 向getgroupinfo.ashx  发出post请求
+            $.post("getgroupinfo.ashx", null, function (jsobj) {
+                alert(jsobj[2].GroupName + " --3");
+            }, "json");
+
+        })
+    </script>
+
+</head>
+<body>
+</body>
+</html>

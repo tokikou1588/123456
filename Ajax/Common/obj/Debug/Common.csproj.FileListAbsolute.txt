@@ -1,0 +1,5 @@
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\Common\bin\Debug\Common.dll
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\Common\bin\Debug\Common.pdb
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\Common\obj\Debug\Common.dll
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\Common\obj\Debug\Common.pdb
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache

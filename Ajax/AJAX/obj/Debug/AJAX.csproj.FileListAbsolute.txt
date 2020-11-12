@@ -1,0 +1,11 @@
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\AJAX\bin\AJAX.dll
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\AJAX\bin\AJAX.pdb
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\AJAX\obj\Debug\AJAX.csprojResolveAssemblyReference.cache
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\AJAX\obj\Debug\AJAX.dll
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\AJAX\obj\Debug\AJAX.pdb
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\AJAX\bin\Ajax.BLL.dll
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\AJAX\bin\Ajax.Model.dll
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\AJAX\bin\Ajax.DAL.dll
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\AJAX\bin\Ajax.BLL.pdb
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\AJAX\bin\Ajax.Model.pdb
+E:\传智播客\11期班\2014-2-24 ajax  js回调函数,json数据格式(get,post请求)\源码\Ajax\AJAX\bin\Ajax.DAL.pdb

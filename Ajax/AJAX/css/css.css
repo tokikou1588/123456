@@ -1,0 +1,21 @@
+﻿  .list {
+            width: 800px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+            .list th {
+                background-color: #0094ff;
+                color: white;
+                font-weight: bold;
+                font-size: 16px;
+                text-align: center;
+                padding: 5px;
+                border: 1px solid #000;
+            }
+
+            .list td {
+                text-align: center;
+                padding: 5px;
+                border: 1px solid #000;
+            }

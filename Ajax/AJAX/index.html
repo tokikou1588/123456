@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script type="text/javascript">
+        function AjaxGet() {
+            //1.0 创建异步对象的实例
+            var xhr = new XMLHttpRequest();
+
+            //2.0 利用异步对象的open方法赋值相应的参数
+            xhr.open("get", "getServerTime.ashx", true);
+
+            //3.0 设置回调函数
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) //表示当前请求已经完成了，得到了服务器响应回来的响应报文了
+                {
+                    if (xhr.status == 200) //表示服务器能够正常响应
+                    {
+                        alert(xhr.responseText);
+                    }
+                }
+            }
+            //利用send（）方法将第2步设置好的参数发出请求
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="get请求获取服务器时间" onclick="AjaxGet()" />
+</body>
+</html>

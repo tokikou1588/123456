@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script>
+        function ajaxGet() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("get", "getgroupinfo.ashx", true);
+            xhr.setRequestHeader("If-Modified-Since", "0");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    //responseText 返回的格式为： [{"GroupId":1,"GroupName":"老板1"},{"GroupId":2,"GroupName":"朋友"},{"GroupId":3,"GroupName":"亲人"},{"GroupId":4,"GroupName":"同事"},{"GroupId":5,"GroupName":"其他"},{"GroupId":209,"GroupName":"八戒"}]
+                    var txt = xhr.responseText;
+
+                    // 将json字符串转换成js 数组
+                    var jsarr = JSON.parse(txt);
+
+                    //遍历jsarr 数组中所有对象，将其中的属性取出来拼装成option标签，添加到id=gropus 的seletct元素中
+                    var sobj = document.getElementById("gropus");
+                    //清除select标签中的所有option标签
+                    sobj.length = 0;
+
+                    markOption(jsarr, sobj);
+                }
+            }
+
+            xhr.send();
+        }
+
+        function markOption(jsarr, sobj) {
+            for (var i = 0; i < jsarr.length; i++) {
+                var item = jsarr[i];
+                var opt = new Option(item.GroupName, item.GroupId);
+                sobj.options.add(opt);
+            }
+        }
+    </script>
+</head>
+<body>
+    <input  type="button" onclick="ajaxGet()" value="获取分组数据" />
+    <select id="gropus">
+    </select>
+</body>
+</html>
