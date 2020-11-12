@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="jquery-2.0.3.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            //document.getElementById("div1").innerHTML = "2345";
+            //当引入jq后在全局中会多次一个$方法
+            //在jq中很多地方都把属性改成方法，如果方法传值就是设置值，否则就是取值
+            //jq本质就是js html()这个里面还是会调用innerHTML属性
+            alert($("#div1").html());
+        }
+    </script>
+</head>
+<body>
+    <div id="div1">123123</div>
+</body>
+</html>

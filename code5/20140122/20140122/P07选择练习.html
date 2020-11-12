@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="jquery-1.8.3.js"></script>
+    <script>
+        $(function () {
+            //绑定事件
+            $("#inp").click(function () {
+                //var ischecked = this.checked;
+                //$("input[type=checkbox][id!=inp]").attr("checked", this.checked);
+                //$("input[type=checkbox][id!=inp]").each(function () {
+                //    this.checked = ischecked;
+                //});
+                //$("input[type=checkbox][id!=inp]").each(function () {
+                //    this.checked = !this.checked;
+                //});
+            });
+
+            //$("<p>123</p>").appendTo("body");
+            $("<tr><td>" + va1 + "</td></tr>");
+            alert(0);
+            $("#inp").remove();
+
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <input type="button" value="反选" id="inp" />
+        <label for="inp">反选</label><br />
+        <input type="checkbox" id="Checkbox1" />
+        <label for="Checkbox1">羽毛球</label>
+        <input type="checkbox" id="Checkbox2" />
+        <label for="Checkbox2">乒乓球</label>
+        <input type="checkbox" id="Checkbox3" />
+        <label for="Checkbox3">篮球</label>
+        <input type="checkbox" id="Checkbox4" />
+        <label for="Checkbox4">足球</label>
+    </div>
+</body>
+</html>

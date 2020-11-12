@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+        div {
+            border: 1px solid #ff6a00;
+        }
+    </style>
+    <script src="jquery-1.8.3.js"></script>
+    <script>
+        $(function () {
+            $("#exe").click(function () {
+                //replaceWith用一个元素来替换匹配元素
+                //$("span").replaceWith("<button>我是用来替换的</button>");
+                //replaceAll用上面功能一样，只是参数位置相反
+                //$("<button>我是用来替换的</button>").replaceAll("span");
+                //empty 清空子元素
+                $("div").empty();
+            });
+        })
+    </script>
+</head>
+<body>
+    <button id="exe">执行</button>
+    <div>
+        是打发士大夫
+        <span>werwe</span>
+        是打发士大夫
+         是打发士大夫
+        <span>werwe</span>
+        <span>werwe</span>
+    </div>
+</body>
+</html>

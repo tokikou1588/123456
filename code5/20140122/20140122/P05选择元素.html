@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="jquery-1.8.3.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+        div {
+            margin: 10px;
+        }
+    </style>
+    <title></title>
+    <script>
+        $(function () {
+            //--------基本选择器-------
+            //$("#div11")
+            //$(".div1")
+            //$("div")
+            //$("*");
+            //--------多条件选择器---------
+            //组合条件 一个元素就满足所以条件
+            //$("div.div1#div11").html("123123123");
+            //空格表示子元素 所以的子代元素 不只是儿子这一层
+            //console.log($("#mydiv .div1").css("border", "1px solid #0094ff"))
+            //“>” 查找儿子这一层的元素
+            //$("#mydiv>.div1").css("border", "1px solid #0094ff");
+            //紧接的下一个元素
+            //$("#div12+input").css("border", "1px solid #0094ff");
+            //匹配后面所以兄弟节点
+            //$("#div12~.div2").css("border", "1px solid #0094ff");
+            //-----------属性选择器---------------
+            //匹配有type属性的input
+            // $("input[type]").val("123");
+            //匹配type不为button元素
+            //$("input[type!=button]").val("123");
+            //属性名以什么开头的
+            //$("a[href^='http://']").html("百毒");
+            //属性名以什么结尾
+            //    $("a[href$='com']").html("百毒");
+            //只要包含内容就匹配
+            //   $("a[href*='入']").html("百毒");
+            //------------过滤器-----------
+            //得到第一个元素
+            //$("div.div1:first ").css("border", "1px solid #0094ff");
+            //得到最后一个元素
+            //$("div.div1:last ").css("border", "1px solid #0094ff");
+            //得到偶数 位置的元素
+            //$("div:even").css("border", "1px solid #0094ff");
+            //得到奇数 位置的元素
+            // $("div:odd").css("border", "1px solid #0094ff");
+            //排除id为div12的div
+            //$("div:not(#div12)").css("border", "1px solid #0094ff");
+            //包含指定子元素
+            // $("div:has(input)").css("border", "1px solid #0094ff");
+            //获取指定下标的元素
+            // $("div:eq(1)").css("border", "1px solid #0094ff");
+            //获取下标小于指定值得元素 不包含自己
+            //$("div:lt(3)").css("border", "1px solid #0094ff");
+            //获取下标大于指定值得元素 不包含自己
+            // $("div:gt(3)").css("border", "1px solid #0094ff");
+            //必须包含子元素  也就是说必须有子元素
+            //$("#mydiv:parent").css("border", "1px solid #0094ff");
+            //-----------表单过滤器
+            //获取可用的表单元素
+            //$(":enabled ").css("border", "1px solid #0094ff");
+            //获取下拉框选中元素
+            //$("#sel1 option:selected").css("color", "#0094ff");
+            //获取选中项
+            //  $("input:checked").css("height", "128px").css("border", "1px solid #0094ff");
+            //获取子节点 得到第一个子节点  注意需要前面查询出来
+            $("#mydiv :first-child").css("border", "1px solid #0094ff");
+        });
+    </script>
+</head>
+<body>
+    <select id="sel1">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+    </select>
+    <input type="radio" name="1" checked="false" />
+    <input type="radio" name="1" checked="false" />
+
+    <input type="checkbox" name="1" checked="false" />
+    <input type="checkbox" name="1" checked="false" />
+    <a href="http://www.baidu.com"></a>
+    <a href="P01JQ入门.html"></a>
+    <div id="mydiv">
+
+        <div class="div1">
+            123
+            <div class="div1" id="div13">
+                <input />
+                <input />
+            </div>
+        </div>
+        <div class="div1" id="div12">123</div>
+        <input />
+        <input type="tel" />
+        <div class="div1" id="div14">123</div>
+        <div class="div2" id="div15">div2</div>
+        <input type="button" />
+        <div class="div2" id="div16">div2</div>
+    </div>
+</body>
+</html>

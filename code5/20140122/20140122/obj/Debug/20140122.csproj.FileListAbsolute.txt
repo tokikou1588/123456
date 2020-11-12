@@ -1,0 +1,5 @@
+F:\class\11class\2014-1-22jq\code\20140122\20140122\bin\20140122.dll
+F:\class\11class\2014-1-22jq\code\20140122\20140122\bin\20140122.pdb
+F:\class\11class\2014-1-22jq\code\20140122\20140122\obj\Debug\20140122.csprojResolveAssemblyReference.cache
+F:\class\11class\2014-1-22jq\code\20140122\20140122\obj\Debug\20140122.dll
+F:\class\11class\2014-1-22jq\code\20140122\20140122\obj\Debug\20140122.pdb

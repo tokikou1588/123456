@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="jquery-1.8.3.js"></script>
+    <script>
+        $(function () {
+            //wrap 用指定的结构化语句包裹每一个匹配的元素
+            //$("span").wrap("<a href='www.baid.com'></a>");
+            //wrapAll用指定的结构化语句包裹所有匹配的元素
+            //$("span").wrapAll("<a href='www.baid.com'></a>")
+            //wrapInner用指定的结构化语句包裹匹配的元素的内容
+            //$("span").wrapInner("<a href='www.baid.com'></a>");\
+            //删除包裹匹配元素的元素
+            $("span").unwrap()
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <div>
+            <span>链接1</span>
+            <span>链接1</span>
+            <span>链接1</span>
+            <span>链接1</span>
+            <span>链接1</span>
+        </div>
+    </div>
+</body>
+</html>

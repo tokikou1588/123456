@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="data.js"></script>
+    <script src="jquery-1.8.3.js"></script>
+    <script src="jquery.tmpl.js"></script>
+    <title></title>
+    <style>
+        * {
+            font-family: "微软雅黑";
+            margin: 0px;
+        }
+
+        .border_div {
+            border: 1px solid #0094ff;
+            width: 700px;
+            margin: 10px auto;
+            padding: 10px;
+        }
+
+        .addinput {
+            width: 90px;
+            border: 1px solid #000;
+            padding: 1px;
+        }
+
+        select {
+            width: 80px;
+            border: 1px solid #000;
+        }
+
+        #dataGrid {
+            width: 722px;
+            margin: 0px auto;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+            #dataGrid th {
+                background-color: #0094ff;
+                color: #fff;
+                font-weight: 800;
+            }
+
+            #dataGrid td {
+                text-align: center;
+            }
+    </style>
+    <script>
+        $(function () {
+            //得到模板，根据数据生成行，再把行加到t_body中
+            $("#loadDataTmp").tmpl(MoneyList).appendTo("#t_body")
+        });
+        var oldEditTr = null;
+        //编辑方法
+        function edit(trid) {
+            //判断记录老行的变量是否为空
+            if (oldEditTr != null) {
+                var editTrId = oldEditTr.attr("id");
+                //根据记录行的id获取当前编辑行，再使用老行替换当前编辑行
+                $("#" + editTrId).replaceWith(oldEditTr);
+            }
+            oldEditTr = $("#tr_" + trid);
+            //得到需要编辑行
+            var oldTr = $("#tr_" + trid);
+            //根据id得到一个数据对象
+            var editMoney = getMoneyObjById(trid);
+            //根据模板已经数据生成一个编辑行
+            var editTr = $("#editDataTmp").tmpl(editMoney);
+            //使用编辑行替换老行
+            editTr.replaceAll(oldTr);
+            //加载下拉框数据
+            $("#selectDataTmp").tmpl(OrgList).appendTo("#editselect");
+            //设置下拉框的值
+            $("#editselect").val(oldTr.children("[orgid]").attr("orgid"));
+            //oldTr.replaceWith(editTr);
+        }
+        //编辑方法
+        function doEdit(id) {
+            var newObj = {
+                id: id,
+                orgid: $("#editselect").val(),
+                pName: $("#editpname").val(),
+                money: $("#editmoney").val(),
+                date: $("#editdate").val()
+            }
+            updateMoneyObj(id, newObj);
+            //清空内容
+            $("#t_body").empty();
+            //重新加载数据
+            $("#loadDataTmp").tmpl(MoneyList).appendTo("#t_body")
+            oldEditTr = null;
+        }
+    </script>
+    <!--加载数据模板-->
+    <script id="loadDataTmp" type="text/x-jquery-tmpl">
+        <tr id="tr_${id}">
+            <td>${id}</td>
+            <td>${pName}</td>
+            <!--可以直接调用js方法-->
+            <td orgid="${orgid}">${getOrgObjById(orgid).name}</td>
+            <td>${money}</td>
+            <td>${date}</td>
+            <td>
+                <a href="javascript:void(0)" onclick="edit(${id})">编辑</a>
+                <a href="javascript:void(0)">删除</a>
+            </td>
+        </tr>
+    </script>
+    <!--编辑数据模板-->
+    <script id="editDataTmp" type="text/x-jquery-tmpl">
+        <tr id="tr_${id}">
+            <td>${id}</td>
+            <td>
+                <input value="${pName}" id="editpname" /></td>
+            <td>
+                <select id="editselect"></select></td>
+            <td>
+                <input value="${money}" id="editmoney" /></td>
+            <td>
+                <input value="${date}" id="editdate" /></td>
+            <td>
+                <a href="javascript:void(0)" onclick="doEdit(${id})">确定</a>
+                <a href="javascript:void(0)">取消</a>
+            </td>
+        </tr>
+    </script>
+    <!--下拉框数据模板-->
+    <script type="text/x-jquery-tmpl" id="selectDataTmp">
+        <option value="${id}">${name}</option>
+    </script>
+</head>
+<body>
+    <h1 style="text-align: center; font-size: 30px; font-weight: 900; margin-top: 50px; margin-bottom: 30px;">捐款管理</h1>
+    <div class="border_div">
+        捐款单位:
+        <select id="s_select">
+            <option value="-1">--请选择--</option>
+        </select>
+        <input type="button" value="查　询" id="select_btn" />
+        <input type="button" value="上一页" id="prepage" />
+        <input type="button" value="下一页" id="nextpage" />
+        当前页:<span id="pageindex"></span>/总页数:<span id="count"></span>
+    </div>
+    <div class="border_div">
+        捐款人:<input class="addinput" id="pname" />
+        单　位:<select class="addinput" id="addselect"></select>
+        金　额:<input class="addinput" id="money" />
+        时　间:<input class="addinput" data-options="editable:false" id="date" />
+        <input type="button" id="addBtn" value="新　增" style="width: 80px;" />
+    </div>
+    <table id="dataGrid" border="1">
+        <thead>
+            <tr>
+                <th>序号
+                </th>
+                <th>捐款人
+                </th>
+                <th>捐款单位
+                </th>
+                <th>金额
+                </th>
+                <th>时间
+                </th>
+                <th>操作
+                </th>
+            </tr>
+        </thead>
+        <tbody id="t_body">
+        </tbody>
+    </table>
+</body>
+</html>
+

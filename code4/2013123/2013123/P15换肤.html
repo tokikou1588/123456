@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link id="css_skin" href="Css/css1.css" rel="stylesheet" />
+    <script src="jquery-1.8.3.js"></script>
+    <script src="cookies.jquery.js"></script>
+
+    <title></title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            border: 1px solid #000;
+        }
+    </style>
+    <script>
+        $(function () {
+            //在加载页面的时候判断cookie中是否有记录样式
+            //if ($.cookie("csspath")) {
+            //    //如果有设置这个样式为默认样式
+            //    $("#css_skin").attr("href", $.cookie("csspath"));
+            //}
+            //$("div").click(function () {
+            //    var csspath = $(this).attr("csspath");
+            //    $("#css_skin").attr("href", csspath);
+            //    //讲当前点击的样式存到cookie中
+            //    $.cookie("csspath", csspath, { expires: 777 });
+            //});
+        });
+    </script>
+
+</head>
+<body>
+    <div style="background-color: red" csspath="css/css1.css"></div>
+    <div style="background-color: green" csspath="css/css2.css"></div>
+    <div style="background-color: blue" csspath="css/css3.css"></div>
+</body>
+</html>

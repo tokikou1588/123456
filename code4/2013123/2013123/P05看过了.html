@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        img {
+            height: 100px;
+            width: 100px;
+            margin-left: -8px;
+            padding: 0px;
+        }
+    </style>
+    <script src="jquery-1.8.3.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script>
+        $(function () {
+            $("img").mouseover(function () {
+                //$(this).attr("src", "img/normal.jpg").nextAll().attr("src", "img/left.jpg");
+                //$(this).prevAll().attr("src", "img/right.jpg");
+
+                $(this).attr("src", "img/normal.jpg").nextAll().attr("src", "img/left.jpg").end().prevAll().attr("src", "img/right.jpg");
+            });
+
+            $("img").mouseout(function () {
+                $(this).attr("src", "img/normal.jpg");
+                $(this).siblings().attr("src", "img/normal.jpg");
+            });
+        });
+    </script>
+</head>
+<body>
+    <img src="img/normal.jpg" />
+    <img src="img/normal.jpg" />
+    <img src="img/normal.jpg" />
+    <img src="img/normal.jpg" />
+    <img src="img/normal.jpg" />
+    <img src="img/normal.jpg" />
+    <img src="img/normal.jpg" />
+    <img src="img/normal.jpg" />
+    <img src="img/normal.jpg" />
+    <img src="img/normal.jpg" />
+</body>
+</html>

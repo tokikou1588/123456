@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="jquery-1.8.3.js"></script>
+    <script>
+        $(function () {
+            var arr = new Array();
+            // 调用jq方法返回的是一个jq对象
+
+            var jqObject = $(".div1");
+            //当我们调用jq对象的方法的时候，jq会操作dom数组里面的所以对象
+            //如果你想使用jq方法操作dom元素那么就必须要使用jq对象的方法
+            jqObject.html();
+            //console.log(jqObject);
+        });
+    </script>
+</head>
+<body>
+    <div class="div1"></div>
+    <div class="div1"></div>
+    <div class="div1"></div>
+    <div class="div1"></div>
+    <div class="div1"></div>
+</body>
+</html>

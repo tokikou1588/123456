@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="jquery-2.0.3.js"></script>
+    <title></title>
+    <script>
+        var arr = ["123", "456", "789"];
+        var obj = { name: "itcast", age: "124", tel: "888888" }
+        //for (var i = 0; i < arr.length; i++) {
+        //    arr[i]
+        //}
+        //map循环的时候调用回调函数传入的时候value和index
+        //$.map(arr, function (value, index) {
+        //    alert(this)
+        //    alert(value);
+        //    alert(index);
+        //});
+        //var ret = $.map(obj, function (value, index, age) {
+        //    alert(value);
+        //    alert(index);
+        //    alert(age);
+        //    return value + "123";
+        //}, "123");
+        //alert(ret);
+        //$.each(obj, function (index, value) {
+        //    alert(this);
+        //});
+        $(function () {
+            var dis = $("div");
+            //each 回调方法中this代表的是当前循环的对象
+            dis.each(function (index, value) {
+                alert(value === this);
+                this.innerHTML = "1234";
+                return false;
+            });
+            //map与each的区别
+            //1、map返回新数组 each不会返回新数组
+            //2、map的回调函数this是window,ecah是当前循环的值
+            //3、每次循环都会调用回调函数，并且传入value和index
+            //for (var i = 0; i < dis.length; i++) {
+            //    alert(dis[i].innerHTML);
+            //}
+        });
+
+        //function fun(a, b) {
+        //    alert(this)
+        //    alert(a)
+        //    alert(b)
+        //}
+        ////call用来更改当前方法的this 第一个蚕食就是用来替换this值得，后面的参数都是方法的参数
+        //fun.call("我是this", 123, 123);
+    </script>
+</head>
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+</body>
+</html>

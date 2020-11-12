@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="jquery-2.0.3.js"></script>
+    <script>
+        //所谓的链式编程，其实就是在一个方法使用完对象后，把对象返回会来给下一个方法使用
+        //var obj = new Object();
+        //obj.fun1 = function () {
+        //    alert("fun1");
+        //    return this;
+        //}
+        //obj.fun2 = function () {
+        //    alert("fun2");
+        //    return this;
+        //}
+        //obj.fun3 = function () {
+        //    alert("fun3");
+        //    return this;
+        //}
+        //obj.name = "123";
+        //obj.age = "456";
+
+
+        //alert(obj.fun1().fun2().fun3().name)
+        $(function () {
+            //如果你是取值操作，不会返回jq对象 所以就不能链式编程
+            $("table").css("background", "#ff0").click(function () { alert(1) }).html();
+            //如果你是获取元素操作，可能回改变jq对象中的dom数组，这个时候需要明白自己操作的是那些对象
+            $("table").children().html("改变的东西");
+        })
+    </script>
+</head>
+<body>
+    <table style="width: 380px; height: 384px; background: url(全方位/normal.jpg)">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="jquery-1.8.3.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="cookies.jquery.js"></script>
+    <title></title>
+    <script>
+        //alert( document.cookie)
+        $(function () {
+            //如果在添加cookie的时候使用过期时间那么这个cookie加做硬盘cookie，如果时间为负数，表示马上失效
+            $.cookie("name", "itcast", { expires: 11111 });
+            //读取cookie
+            alert($.cookie("name"));
+            //alert(document.cookie)
+        })
+    </script>
+</head>
+<body>
+</body>
+</html>

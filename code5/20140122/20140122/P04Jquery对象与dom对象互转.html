@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="jquery-1.8.3.js"></script>
+    <script>
+        $(function () {
+            //  var jqObject = $(".div1");
+            //通过下标转 获取jq对象中指定下标的dom元素
+            //jqObject[0].innerHTML = "123";
+            ////通过get方法传入下标，获取元素
+            //jqObject.get(1).innerHTML = "123123";
+
+
+            //把一个dom对象转成jq对象
+            var domObj = document.getElementById("div11");
+            var domObj1 = document.getElementById("div12");
+            //$(domObj) 创建jq对象并且添加传入元素
+            var $jqObj = $(domObj);
+            //add 往jq对象中追加东西
+            $jqObj.add(domObj);
+            $jqObj.html("123");
+            // .add(domObj1).html("123");
+        });
+    </script>
+</head>
+<body>
+    <div class="div1" id="div11"></div>
+    <div class="div1" id="div12"></div>
+    <div class="div1"></div>
+    <div class="div1"></div>
+    <div class="div1"></div>
+</body>
+</html>

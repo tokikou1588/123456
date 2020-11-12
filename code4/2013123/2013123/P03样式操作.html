@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="jquery-1.8.3.js"></script>
+    <style>
+        .mydiv {
+            font-size: 128px;
+            color: red;
+        }
+
+        .mydiv1 {
+            font-weight: 900;
+        }
+    </style>
+    <script>
+        $(function () {
+            //$("div").css("font-size", "28px");
+            //css方法中传入一个样式对象
+            //$("div").css({
+            //    fontSize: "28px",
+            //    color: "red"
+            //});
+            //添加一个class
+            //$("div").addClass("mydiv mydiv1");
+            //alert(0)
+            ////删除一个class
+            //$("div").removeClass("mydiv1")
+            ////判断样式是否存在
+            //alert($("div").hasClass("mydiv"));
+            //  $("div").toggleClass("mydiv");
+        });
+        function fun() {
+            //toggleClass有指定样式就删除，没有就加上
+            $("div").toggleClass("mydiv");
+        }
+    </script>
+</head>
+<body>
+    <button onclick="fun()">开关</button>
+    <div id="div">12313123</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+        div {
+            border: 1px solid #ff6a00;
+        }
+    </style>
+    <script src="jquery-1.8.3.js"></script>
+    <script>
+        $(function () {
+            $("#exe").click(function () {
+                //append 插入子元素，并且插入到最后
+                //前面目标元素，后面是需要插入的元素
+                //$("div").append(' <img src="img/1.jpg" />');
+                ////元素位置也上面是相反的
+                //$(' <img src="img/1.jpg"/>').appendTo("div");
+
+                //prepend prependTo 功能与上面的一样，只是插入的位置在开头
+                //$("div").prepend(' <img src="img/1.jpg" />');
+                //元素位置也上面是相反的
+                //$(' <img src="img/1.jpg"/>').prependTo("div");
+
+                //before与insertBefore作为兄弟节点插入到前面
+                //前面是目标，后面是需要插入的元素
+                //$("div").before('<img src="img/1.jpg" />');
+                //功能与上面一样，参数相反
+                //$('<img src="img/1.jpg" />').insertBefore("div");
+                //after与insertafter作为兄弟节点插入到后面
+                //$("div").after('<img src="img/1.jpg" />');
+                //$('<img src="img/1.jpg" />').insertAfter("div");
+            });
+        })
+    </script>
+</head>
+<body>
+    <button id="exe">执行</button>
+    <div>
+        <span>werwe</span>
+        <span>werwe</span>
+    </div>
+</body>
+</html>

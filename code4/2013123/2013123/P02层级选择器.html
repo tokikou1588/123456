@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+        div {
+            border: 1px solid #0094ff;
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+    <script src="jquery-2.0.3.js"></script>
+    <script>
+        $(function () {
+            //在div下面的input直接子元素
+            //$("#div1").children("input").css("border-color", "#ff0000");
+            //contents 查找所以直接子元素
+            // console.log($("#div1").contents());
+            //next 获取下一个兄弟节点
+            //$("#div1").next().css("border-color", "#ff0000");
+            //prev 获取上一个兄弟节点
+            // $("#div2").prev().css("border-color", "#ff0000");
+            //获取后面所以兄弟节点
+            //$("#div1").nextAll().css("border-color", "#ff0000");
+            //获取前面所以兄弟节点
+            //$("#div3").prevAll().css("border-color", "#ff0000");
+            //siblings 获取所以兄弟节点不分前后
+            //$("#div2").siblings().css("border-color", "#ff0000");
+            ////查找开到结束之间的兄弟元素 
+            //$("#div1").nextUntil("#div3").css("border-color", "#ff0000");
+            //$("#div1").prevUntil("#div3").css("border-color", "#ff0000");
+            //查找父元素 也就爸爸层的元素
+            //$("#div1_1_1").parent().css("border-color", "#ff0000")
+            //查找所有的父辈元素
+            //$("#div1_1_1").parents().css("border-color", "#ff0000");
+            //$("#div1_1_1").parentsUntil("body").css("border-color", "#ff0000");
+            //查找使用了相对、绝对、固定、布局的父元素
+            //$("#div1_1_1").offsetParent().css("border-color", "#ff0000");
+            //find 查找子元素
+            // $("#div1").find("input").css("border-color", "#ff0000");
+            //第二参数是值得上下文 也就是查找范围
+            //$("input", "#div1").css("border-color", "#ff00ff");
+            //根据表格得到一个集合，然后通过is判断元素是否存在 
+            //alert($("#div1").children().is("input"))
+
+        });
+    </script>
+</head>
+<body>
+    <div id="div1" style="position: static">
+        div1
+        <input />
+        <div id="div1_1">
+            <input id="div1_1_1" />
+        </div>
+        <div>
+        </div>
+        <div>
+        </div>
+    </div>
+    <!--  <div id="div2">
+        div2
+    </div>
+    <div id="div3">
+        div3
+        <div>
+        </div>
+        <div>
+        </div>
+        <div>
+        </div>
+    </div>-->
+</body>
+</html>

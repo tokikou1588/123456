@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="jquery-1.8.3.js"></script>
+    <script>
+        $(function () {
+            //end 回到最近一次破坏性操作之前
+            //所谓的破坏性操作就是某一个操作改变了jq对象的dom数组，那么这个操作就叫做破坏性操作
+            $("#tr1").css("border-color", "red").nextAll().css("border-color", "#00ffff").end().css("background", "#0094ff")
+        });
+    </script>
+</head>
+<body>
+    <table style="width: 380px; height: 384px;" border="1">
+        <tr id="tr1">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>

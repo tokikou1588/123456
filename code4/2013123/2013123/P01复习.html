@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="jquery-1.8.3.js"></script>
+    <script>
+        $(function () {
+            //alert($("input").prop("checked", true));
+            //$("input").eq(1).prop("checked", true);
+            //$(document)
+            //var arr = ["123", "456", "789"];
+            //var ret = $.map(arr, function (value, index) {
+            //    alert(value);
+            //    return false
+            //});
+            //alert(ret);
+
+            //$("input").each(function () {
+            //    alert("---");
+            //    this.checked = true;
+            //});
+            //通过jq对象点出来的map方法中this也是当前循环到的元素，因为jq内部在调用回调函数的也是用call方法改变this值
+            //$("input").map(function () {
+            //    alert("--")
+            //    this.checked = true;
+            //});
+        });
+    </script>
+</head>
+<body>
+    <input type="checkbox" />
+    <input type="checkbox" />
+    <input type="checkbox" />
+    <input type="checkbox" />
+    <div></div>
+</body>
+</html>

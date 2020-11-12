@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="jquery-1.8.3.js"></script>
+    <script>
+        $(function () {
+            $("*").val("13");
+            $("td").mouseover(function () {
+                //index就是获取指定元素在指定jq对象dom数组中的位置 ,如果没有返回-1
+                var picindex = $("td").index(this);
+
+                $("table").css("background", "url(全方位/" + picindex + ".jpg)")
+            })
+
+            $("table").click(function () {
+                $("table").css("background", "url(全方位/pressed.jpg)")
+            });
+        });
+    </script>
+</head>
+<body>
+    <input />
+    <input />
+    <table style="width: 380px; height: 384px; background: url(全方位/normal.jpg)">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>
