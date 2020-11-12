@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <style type="text/css">
+        #divTest {
+            border:1px solid #0094ff;width:500px;height:100px;
+        }
+    </style>
+    <script type="text/javascript">
+        //(function testSeflRun(a) {
+        //    window.testa = 123;
+        //    alert("小白~~~最是那一低头的温柔，不胜凉风的娇羞~~"+a);
+        //})(123);
+
+        //alert(window.testa);
+
+        //function aa()
+        //{
+        //    var ss = 123;
+        //}
+        //aa();
+        //alert(window.ss);
+
+        //testSeflRun(123123);
+        //testA();
+
+        //声明式方法 有优先加载权
+        function testA() {
+            alert("小白啊~~~");
+        }
+
+        //alert(myDog);
+        //var myGirl;//声明变量，但是没有给值，所以变量的值为 undefined
+        //var myDog = 123;//声明变量，其实也是有优先加载的，只不过不会执行 = 右边的代码
+        
+        //-----------------回调函数-----------------------
+        //---------------------系统边境----------
+        //方法作为参数传递
+        function invokeMethod(methodObj) {
+            //调用传入的方法
+            methodObj();
+        }
+        //---------------------系统边境----------
+
+
+        //方法对象 的定义
+        var testB = function () {
+            alert("小白啊~~~~");
+        };
+
+        //调用方法的时候 将另一个方法 传入
+        invokeMethod(testB);
+    </script>
+</head>
+<body>
+    <div id="divTest">
+        <input type="button" id="btnTest" value="测试"/>
+    </div>
+</body>
+</html>

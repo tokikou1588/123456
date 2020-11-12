@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>js高级</title>
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <style type="text/css">
+    </style>
+    <script type="text/javascript">
+        /*
+        var num = 123;
+        //1.判断 变量 是否【不是一个数值】
+        var res = isNaN(num);
+        alert(res);
+        //1.1代表 非数值 的一个变量
+        //window.NaN
+        */
+
+        //2.将数值字符串 转成 数值
+        /*
+        var numStr1 = "123456";
+        alert(numStr1 + 110);//如果不转型，那么当 该数值字符串 和 数值 运算时，会自动把数值也转成字符，再合并
+
+        var num1 = parseInt(numStr1);
+        alert(num1 + 110);
+        */
+
+        /*
+        //2.1使用 parseInt等方法 可以用来 截取 数值，比如 获取元素位置坐标的时候，获取的是 110px，就可以通过该方法去掉px
+        var numstr2 = "123abc456";
+        var num2 = parseInt(numstr2);
+        alert(num2);
+        */
+
+        //3.JS的引用类型对象可以动态添加属性
+        /*
+        var obj = new Object();
+        obj.name = "小彩旗";
+        alert(obj.name);
+
+        //删除对象里的属性
+        //obj.name = undefined;
+        delete obj.name;
+
+        alert(obj.name);
+        */
+
+        //3.2JS的值类型对象不可以动态添加属性
+        /*
+        var numO = 123;
+        numO.name = "james";
+        alert(numO.name);
+        */
+
+        function setName(o) {
+            o.name = "lihong";
+            o = new Object();
+            o.name = "james";
+        }
+        var c = new Object();
+        setName(c);
+        alert(c.name);
+
+    </script>
+</head>
+<body>
+    <input type="button" id="btnTest" value="测试"/>
+</body>
+</html>

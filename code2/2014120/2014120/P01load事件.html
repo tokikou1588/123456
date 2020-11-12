@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script>
+        //onunload 关闭或者是刷新后触发
+        //window.onunload = function () {
+        //    alert("关闭了！！！");
+        //}
+        //onbeforeunload 在关闭或者是刷新前提示是否执行操作，一定要return 否则Google没有反应
+        //window.onbeforeunload = function () {
+        //    return "亲，不要离开我！！";
+        //}
+
+        //function fun(inpthis) {
+        //    if (parseInt(inpthis.value)) {
+        //        inpthis.value = parseInt(inpthis.value);
+        //    } else {
+        //        inpthis.value = "";
+        //    }
+        //}
+        //function fun1() {
+        //    alert("点击了鼠标")
+        //}
+        // clipboardData访问剪切板 
+        //setData 设置一个数据
+        //getData 得到剪切板的数据
+        //clipboardData.setData("text", "哈哈哈，被我改了！！！！")
+        //alert(clipboardData.getData("text"));
+
+        window.onload = function () {
+            //oncopy复制 oncut剪切 onpaste粘贴 如果返回false就表示不允许操作
+            //document.getElementById("inp").oncopy = function () {
+            //    alert("请购买会员，否则不能赋值");
+            //    return false;
+            //}
+            //document.getElementById("inp").onpaste = function () {
+            //    return false;
+            //}
+            document.body.oncopy = function () {
+                setTimeout(function () {
+                    var value = clipboardData.getData("text");
+                    value += "这篇文章来自itcast";
+                    alert(value);
+                    clipboardData.setData("text", value);
+                }, 100);
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" onkeyup="fun(this)" onmousedown="fun1()" />
+    fadsfasdfsadfsadfsafsadfsdfsdfasfsadfjasfjsfjkhfjksadf发货举案说法即可恢复开机速度合法身份和空间划分了空间鞍山分行卡交换机可发挥空间和客户付款计划付款计划福建客户反馈技术附件
+    fadsfasdfsadfsadfsafsadfsdfsdfasfsadfjasfjsfjkhfjksadf发货举案说法即可恢复开机速度合法身份和空间划分了空间鞍山分行卡交换机可发挥空间和客户付款计划付款计划福建客户反馈技术附件
+    fadsfasdfsadfsadfsafsadfsdfsdfasfsadfjasfjsfjkhfjksadf发货举案说法即可恢复开机速度合法身份和空间划分了空间鞍山分行卡交换机可发挥空间和客户付款计划付款计划福建客户反馈技术附件
+    fadsfasdfsadfsadfsafsadfsdfsdfasfsadfjasfjsfjkhfjksadf发货举案说法即可恢复开机速度合法身份和空间划分了空间鞍山分行卡交换
+机可发挥空间和客户付款计划付款计划福建客户反馈技术附件
+</body>
+</html>

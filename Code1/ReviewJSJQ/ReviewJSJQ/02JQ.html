@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <style type="text/css">
+        #divTest {
+            border:1px solid #0094ff;width:500px;height:100px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var $div = $("#divTest");
+            //到指定的查询上下文中 检索 对应的 元素
+            var $btn = $("#btnTest", $div);
+            
+        }
+    </script>
+</head>
+<body>
+    <select id="selNation">
+        <option id="optChina">中国</option>
+        <option>俄罗斯</option>
+    </select>
+
+
+    <div id="divTest">
+        <input type="button" id="btnTest" value="测试"/>
+    </div>
+</body>
+</html>

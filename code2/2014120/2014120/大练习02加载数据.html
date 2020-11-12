@@ -1,0 +1,404 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/easyui.css" rel="stylesheet" />
+    <script src="js/jquery-1.8.0.min.js"></script>
+    <script src="js/jquery.easyui.min.js"></script>
+    <script src="js/easyui-lang-zh_CN.js"></script>
+    <title></title>
+    <style>
+        * {
+            font-family: "微软雅黑";
+            margin: 0px;
+        }
+
+        .border_div {
+            border: 1px solid #0094ff;
+            width: 700px;
+            margin: 10px auto;
+            padding: 10px;
+        }
+
+        .addinput {
+            width: 90px;
+            border: 1px solid #000;
+            padding: 1px;
+        }
+
+        select {
+            width: 80px;
+            border: 1px solid #000;
+        }
+
+        #dataGrid {
+            width: 722px;
+            margin: 0px auto;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+            #dataGrid th {
+                background-color: #0094ff;
+                color: #fff;
+                font-weight: 800;
+            }
+
+            #dataGrid td {
+                text-align: center;
+            }
+    </style>
+    <script>
+
+        //------------1、数据准备-------
+        //1.1捐款单位数据
+        var OrgList = [{
+            id: 0,
+            name: "土豪基金"
+        }, {
+            id: 1,
+            name: "壹基金"
+        }, {
+            id: 2,
+            name: "宋庆龄基金"
+        }, {
+            id: 3,
+            name: "郭美美基金"
+        }];
+        //1.2受捐单位数据
+        var MoneyList = [{
+            id: 1,
+            pName: "马xx",
+            orgid: 3,
+            money: 100000,
+            date: "2013-12-12"
+        }, {
+            id: 2,
+            pName: "张xx",
+            orgid: 2,
+            money: 100000,
+            date: "2013-12-12"
+        }, {
+            id: 3,
+            pName: "林xx",
+            orgid: 1,
+            money: 100000,
+            date: "2013-12-12"
+        }, {
+            id: 4,
+            pName: "邹xx",
+            orgid: 0,
+            money: 100000,
+            date: "2013-12-12"
+        }, {
+            id: 5,
+            pName: "马xx",
+            orgid: 3,
+            money: 100000,
+            date: "2013-12-12"
+        }, {
+            id: 6,
+            pName: "张xx",
+            orgid: 2,
+            money: 100000,
+            date: "2013-12-12"
+        }, {
+            id: 7,
+            pName: "林xx",
+            orgid: 1,
+            money: 100000,
+            date: "2013-12-12"
+        }, {
+            id: 8,
+            pName: "邹xx",
+            orgid: 0,
+            money: 100000,
+            date: "2013-12-12"
+        }];
+        //---------------------1.5全局方法及数据操作方法----------
+        var list_id = 4;
+        //1、获取元素方法
+        function gel(id) {
+            return document.getElementById(id);
+        }
+        //2、根据id得到捐款单位对象
+        function getOrgObjById(orgid) {
+            for (var i = 0; i < OrgList.length; i++) {
+                //判断当前循环到对象id是不是传入的id
+                if (OrgList[i].id == orgid) {
+                    //如果条件匹配返回当前对象
+                    return OrgList[i];
+                }
+            }
+        }
+
+        //3、删除数组中的指定元素
+        function delMoneyListObj(id) {
+            //记录删除元素的下标
+            var index = -1;
+            //循环得到删除元素的下标
+            for (var i = 0; i < MoneyList.length; i++) {
+                //如果当前元素的id等于传入的id 那么i就是需要的下标
+                if (MoneyList[i].id == id) {
+                    index = i;
+                    break;
+                }
+            }
+            ////从要删除的元素的位置开始循环，把后面的元素往前移一位
+            //for (var i = index; i < MoneyList.length; i++) {
+            //    //移动方式就是下标加1
+            //    // MoneyList[i] 需要覆盖的元素
+            //    //MoneyList[i + 1]; 用来覆盖的元素
+            //    MoneyList[i] = MoneyList[i + 1];
+            //}
+            ////最后长度减1
+            //MoneyList.length -= 1;
+            //splice 删除或者是添加元素
+            //第一个参数是开始位置
+            //第二个参数是删除元素 个数 可以是0 
+            //后面所以参数都表示是需要新增的元素
+            MoneyList.splice(index, 1);
+        }
+        //4、根据受捐单位id查询数据
+        function getMoneyListByOrgid(orgid) {
+            //记录查询到数据的数组
+            var selectArr = [];
+            //循环受捐单位的数组
+            for (var i = 0; i < MoneyList.length; i++) {
+                //如果当前循环的到对象的orgid与传入的orgid相同，表示就是我们要查询的数据，把这个数据记录在selectArr数组
+                if (MoneyList[i].orgid == orgid || orgid == -1) {
+                    selectArr[selectArr.length] = MoneyList[i];
+                }
+            }
+            //返回装载了查询结果的数组
+            return selectArr;
+        }
+        //--------------2、加载数据-----------------
+        //2.1根据传入的id 得到下拉框并且加载数据
+        function loadSelectData(selectId) {
+            //根据id得到下拉框对象
+            var selectDom = gel(selectId);
+            for (var i = 0; i < OrgList.length; i++) {
+                //根据下标得到捐款单位对象
+                var orgObj = OrgList[i];
+                //创建option
+                var newOption = new Option(orgObj.name, orgObj.id, false, false);
+                //将option加到下拉框中
+                selectDom.options.add(newOption);
+            }
+        }
+        //2.2加载表格数据  加载我们传入的数组
+        function loadMoneyListDate(loadArr) {
+            //得到表格 
+            var t_body = gel("t_body");
+            for (var i = 0; i < loadArr.length; i++) {
+                //得到当前循环到数据对象
+                var MoneyObj = loadArr[i];
+                //创建行
+                var newTr = t_body.insertRow(-1);
+
+                newTr.setAttribute("m_id", MoneyObj.id);
+
+                for (var item in MoneyObj) {
+                    //创建td
+                    var newTd = newTr.insertCell(-1);
+                    //如果当前需要创建的td是受捐单位 需要显示名称
+                    if (item == "orgid") {
+                        //得到当前对象的受捐单位id
+                        var orgid = MoneyObj[item];
+                        //根据id得到捐款单位对象
+                        var orgObj = getOrgObjById(orgid);
+                        //显示捐款单位名称
+                        newTd.innerHTML = orgObj.name;
+                        //跳出当次循环
+                        continue;
+                    }
+                    //设置td的内容
+                    newTd.innerHTML = MoneyObj[item];
+                }
+                //添加操作列
+                var newTd = newTr.insertCell(-1);
+                newTd.innerHTML = "<a href='javascript:void(0)'> 编辑</a>　<a href='javascript:void(0)' onclick='del(this)'>删除</a>";
+            }
+        }
+        //--------------3、数据操作----------------
+        //1、删除数据
+        function del(a_this) {
+            if (confirm("亲,你确定删除吗？？？")) {
+                //得到要删除行
+                var delTr = a_this.parentNode.parentNode;
+                //调用自己的父类的removeChild方法删除自己
+                delTr.parentNode.removeChild(delTr);
+                delMoneyListObj(delTr.getAttribute("m_id"));
+            }
+        }
+        //2、新增数据
+        function addMoneyListObj() {
+            //根据输入框的值创建一个对象
+            //date: $(".easyui-datebox").datebox("getValue")
+            var addObj = {
+                id: ++list_id,
+                pName: gel("pname").value,
+                orgid: gel("addselect").value,
+                money: gel("money").value,
+                date: gel("date").value
+            }
+            //往数组中追加元素
+            //MoneyList.push(addObj);
+            MoneyList[MoneyList.length] = addObj;
+            //先调用情况方法
+            EmptyTable();
+            //重新加载数据
+            loadMoneyListDate(MoneyList);
+
+        }
+        //3、清空表格
+        function EmptyTable() {
+            var t_body = gel("t_body");
+            //rows tr集合
+            //for (var i = t_body.rows.length - 1; i >= 0 ; i--) {
+            //    deleteRow 删除指定下标的行
+            //    t_body.deleteRow(i);
+            //}
+            t_body.innerHTML = "";
+        }
+        //4、查询
+        function selectMoneyList() {
+
+            var selectId = gel("s_select").value;
+            //根据受捐单位id得到一个捐款数据数组
+            var selectArr = getMoneyListByOrgid(selectId);
+            EmptyTable();
+            loadMoneyListDate(selectArr);
+
+        }
+        var pageindex = 0;
+        var pagesize = 5;
+        var pagecount = 0;
+        //5、计算总页数
+        function getCount() {
+            //使用天花板函数计算总页数
+            pagecount = Math.ceil(MoneyList.length / pagesize);
+            gel("count").innerHTML = pagecount;
+        }
+        //6、得到下一页的数据
+        function getNextPageData() {
+            //记录当前页的数据
+            var pageList = [];
+            //判断获取的页有没有超出总页数
+            pageindex++;
+            if (pageindex > pagecount) {
+                alert("已经是最后一页了！！");
+                pageindex--;
+                return;
+            }
+            //计算当前页的开始位置 
+            var start = (pageindex - 1) * pagesize;
+            //计算当前页的结束位置  如果当前页*页容量大于了数据总长度，那么结束的下标就是数组的长度
+            var end = pageindex * pagesize > MoneyList.length ? MoneyList.length : pageindex * pagesize;
+            //循环获得当前页的数据 也就是开始于结束之间的数据
+            for (var i = start; i < end; i++) {
+                pageList[pageList.length] = MoneyList[i];
+            }
+            gel("pageindex").innerHTML = pageindex;
+            return pageList;
+        }
+        //7、得到上一页的数据
+        function getPrePageData() {
+            //记录当前页的数据
+            var pageList = [];
+            //判断获取的页有没有超出总页数
+            pageindex--;
+            if (pageindex < 1) {
+                alert("已经是第一页了！！");
+                pageindex++;
+                return;
+            }
+            //计算当前页的开始位置 
+            var start = (pageindex - 1) * pagesize;
+            //计算当前页的结束位置  如果当前页*页容量大于了数据总长度，那么结束的下标就是数组的长度
+            var end = pageindex * pagesize;
+            //循环获得当前页的数据 也就是开始于结束之间的数据
+            for (var i = start; i < end; i++) {
+                pageList[pageList.length] = MoneyList[i];
+            }
+            gel("pageindex").innerHTML = pageindex;
+            return pageList;
+        }
+        window.onload = function () {
+            //加载下拉框数据
+            loadSelectData("s_select");
+            loadSelectData("addselect");
+            //计算总页数
+            getCount();
+            //加载表格数据
+            loadMoneyListDate(getNextPageData());
+
+            //给新增按钮添加事件
+            gel("addBtn").onclick = addMoneyListObj;
+            //给查询按钮绑定事件
+            gel("select_btn").onclick = selectMoneyList;
+            //下一页的按钮数据
+            gel("nextpage").onclick = function () {
+                var pageData = getNextPageData();
+                //判断返回的数据是不是空 ，如果不是空加载数据
+                if (pageData) {
+                    EmptyTable();
+                    loadMoneyListDate(pageData);
+                }
+
+            }
+            //上一页的按钮事件
+            gel("prepage").onclick = function () {
+                var pageData = getPrePageData();
+                //判断返回的数据是不是空 ，如果不是空加载数据
+                if (pageData) {
+                    EmptyTable();
+                    loadMoneyListDate(pageData);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1 style="text-align: center; font-size: 30px; font-weight: 900; margin-top: 50px; margin-bottom: 30px;">捐款管理</h1>
+    <div class="border_div">
+        捐款单位:
+        <select id="s_select">
+            <option value="-1">--请选择--</option>
+        </select>
+        <input type="button" value="查　询" id="select_btn" />
+        <input type="button" value="上一页" id="prepage" />
+        <input type="button" value="下一页" id="nextpage" />
+        当前页:<span id="pageindex"></span>/总页数:<span id="count"></span>
+    </div>
+    <div class="border_div">
+        捐款人:<input class="addinput" id="pname" />
+        单　位:<select class="addinput" id="addselect"></select>
+        金　额:<input class="addinput" id="money" />
+        时　间:<input class="addinput" data-options="editable:false" id="date" />
+        <input type="button" id="addBtn" value="新　增" style="width: 80px;" />
+    </div>
+    <table id="dataGrid" border="1">
+        <thead>
+            <tr>
+                <th>序号
+                </th>
+                <th>捐款人
+                </th>
+                <th>捐款单位
+                </th>
+                <th>金额
+                </th>
+                <th>时间
+                </th>
+                <th>操作
+                </th>
+            </tr>
+        </thead>
+        <tbody id="t_body">
+        </tbody>
+    </table>
+</body>
+</html>
+

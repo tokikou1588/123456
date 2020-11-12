@@ -1,0 +1,340 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="data.js"></script>
+    <title></title>
+    <style>
+        * {
+            font-family: "微软雅黑";
+            margin: 0px;
+        }
+
+        .border_div {
+            border: 1px solid #0094ff;
+            width: 700px;
+            margin: 10px auto;
+            padding: 10px;
+        }
+
+        .addinput {
+            width: 90px;
+            border: 1px solid #000;
+            padding: 1px;
+        }
+
+        select {
+            width: 80px;
+            border: 1px solid #000;
+        }
+
+        #dataGrid {
+            width: 722px;
+            margin: 0px auto;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+            #dataGrid th {
+                background-color: #0094ff;
+                color: #fff;
+                font-weight: 800;
+            }
+
+            #dataGrid td {
+                text-align: center;
+            }
+    </style>
+    <script>
+
+
+        //---------------------1.5全局方法及数据操作方法----------
+        var option = "<a href='javascript:void(0)' onclick='edit(this)'> 编辑</a>　<a href='javascript:void(0)' onclick='del(this)'>删除</a>";
+        var editOption = "<a href='javascript:void(0)' onclick='doEdit(this)'> 确定</a>　<a href='javascript:void(0)' onclick='unEdit(this)'>取消</a>";
+        //创建全局的输入框
+        var editInputPname = document.createElement("input");
+        editInputPname.className = "addinput";
+        var editInputMoney = document.createElement("input");
+        editInputMoney.className = "addinput";
+        var editInputDate = document.createElement("input");
+        editInputDate.className = "addinput";
+        var editSelectOrg = document.createElement("select");
+        loadSelectObjData(editSelectOrg);
+        var list_id = 4;
+
+        //--------------2、加载数据-----------------
+        //2.1根据传入的id 得到下拉框并且加载数据
+        //function loadSelectData(selectId) {
+        //    //根据id得到下拉框对象
+        //    var selectDom = gel(selectId);
+        //    for (var i = 0; i < OrgList.length; i++) {
+        //        //根据下标得到捐款单位对象
+        //        var orgObj = OrgList[i];
+        //        //创建option
+        //        var newOption = new Option(orgObj.name, orgObj.id, false, false);
+        //        //将option加到下拉框中
+        //        selectDom.options.add(newOption);
+        //    }
+        //}
+        //2.1 副本 根据传入的下拉框对象加载数据
+        function loadSelectObjData(selectDom) {
+            for (var i = 0; i < OrgList.length; i++) {
+                //根据下标得到捐款单位对象
+                var orgObj = OrgList[i];
+                //创建option
+                var newOption = new Option(orgObj.name, orgObj.id, false, false);
+                //将option加到下拉框中
+                selectDom.options.add(newOption);
+            }
+        }
+        //2.2加载表格数据  加载我们传入的数组
+        function loadMoneyListDate(loadArr) {
+            //得到表格 
+            var t_body = gel("t_body");
+            for (var i = 0; i < loadArr.length; i++) {
+                //得到当前循环到数据对象
+                var MoneyObj = loadArr[i];
+                //创建行
+                var newTr = t_body.insertRow(-1);
+
+                newTr.setAttribute("m_id", MoneyObj.id);
+
+                for (var item in MoneyObj) {
+                    //创建td
+                    var newTd = newTr.insertCell(-1);
+                    //如果当前需要创建的td是受捐单位 需要显示名称
+                    if (item == "orgid") {
+                        //得到当前对象的受捐单位id
+                        var orgid = MoneyObj[item];
+                        //根据id得到捐款单位对象
+                        var orgObj = getOrgObjById(orgid);
+                        //显示捐款单位名称
+                        newTd.innerHTML = orgObj.name;
+                        //设置当前受捐单位id值
+                        newTd.setAttribute("orgid", orgObj.id);
+                        //跳出当次循环
+                        continue;
+                    }
+                    //设置td的内容
+                    newTd.innerHTML = MoneyObj[item];
+                }
+                //添加操作列
+                var newTd = newTr.insertCell(-1);
+                newTd.innerHTML = option;
+            }
+        }
+        //--------------3、数据操作----------------
+        //1、删除数据
+        function del(a_this) {
+            if (confirm("亲,你确定删除吗？？？")) {
+                //得到要删除行
+                var delTr = a_this.parentNode.parentNode;
+                //调用自己的父类的removeChild方法删除自己
+                delTr.parentNode.removeChild(delTr);
+                delMoneyListObj(delTr.getAttribute("m_id"));
+            }
+        }
+        //2、新增数据
+        function addMoneyListObj() {
+            //根据输入框的值创建一个对象
+            //date: $(".easyui-datebox").datebox("getValue")
+            var addObj = {
+                id: ++list_id,
+                pName: gel("pname").value,
+                orgid: gel("addselect").value,
+                money: gel("money").value,
+                date: gel("date").value
+            }
+            //往数组中追加元素
+            //MoneyList.push(addObj);
+            MoneyList[MoneyList.length] = addObj;
+            //先调用情况方法
+            EmptyTable();
+            //重新加载数据
+            loadMoneyListDate(MoneyList);
+
+        }
+        //3、清空表格
+        function EmptyTable() {
+            var t_body = gel("t_body");
+            //rows tr集合
+            //for (var i = t_body.rows.length - 1; i >= 0 ; i--) {
+            //    deleteRow 删除指定下标的行
+            //    t_body.deleteRow(i);
+            //}
+            t_body.innerHTML = "";
+        }
+        //4、查询
+        function selectMoneyList() {
+            var selectId = gel("s_select").value;
+            //根据受捐单位id得到一个捐款数据数组
+            var selectArr = getMoneyListByOrgid(selectId);
+            EmptyTable();
+            loadMoneyListDate(selectArr);
+
+        }
+        var oldEditTr = null;
+        //8编辑
+        function edit(athis) {
+            //在每次编辑前，先判断是否已经有行在进行编辑，如果有就还原上一行
+            if (oldEditTr != null) {
+                unEdit(oldEditTr);
+            }
+            //得到需要编辑的tr
+            var editTr = athis.parentNode.parentNode;
+            //在编辑的是记录当前编辑行
+            oldEditTr = editTr;
+            //调用替换方法，根据传入的td，及输入框进行替换
+            repTd(editTr.childNodes[1], editInputPname);
+            repTd(editTr.childNodes[3], editInputMoney);
+            repTd(editTr.childNodes[4], editInputDate);
+            //替换下拉框
+            repSelTd(editTr.childNodes[2], editSelectOrg);
+            //替换操作列
+            editTr.childNodes[5].innerHTML = editOption;
+
+        }
+        //8.1替换文本框
+        function repTd(td, input) {
+            //获取td里面的值并且赋给input
+            input.value = td.innerHTML;
+            td.setAttribute("oldValue", td.innerHTML);
+            //情况td 的内容
+            td.innerHTML = "";
+            //将input加到td中
+            td.appendChild(input);
+        }
+        //替换下拉框
+        function repSelTd(td, select) {
+            td.setAttribute("oldValue", td.innerHTML);
+            //情况td 的内容
+            td.innerHTML = "";
+            //将input加到td中
+            td.appendChild(select);
+            //得到记录在td上面的捐款单位id
+            var tdOrgid = td.getAttribute("orgid");
+            select.value = tdOrgid;
+        }
+
+        //9、取消编辑
+        function unEdit(athis) {
+            var unTr
+            //判断传入的节点如果是一个a 表示是点击的取消按钮，
+            //如果不是a那表示传入的就是一个tr 这个tr是当前编辑的行，需要还原
+            if (athis.nodeName == "A") {
+                unTr = athis.parentNode.parentNode;
+            } else {
+                unTr = athis;
+            }
+            unRepInput(unTr.childNodes[1]);
+            unRepInput(unTr.childNodes[2], true);
+            unRepInput(unTr.childNodes[3]);
+            unRepInput(unTr.childNodes[4]);
+            unTr.childNodes[5].innerHTML = option;
+            oldEditTr = null;
+        }
+        //使用记录在td上面的值替换td内容
+        function unRepInput(td, isRemove) {
+            //如果isRemove这个参数为true删除指定元素 在ie中如果直接使用html替换的是下拉框的option会被清空，所以我要先移除这个元素
+            if (isRemove) {
+                td.removeChild(editSelectOrg);
+            }
+            td.innerHTML = td.getAttribute("oldValue");
+            td.removeAttribute("oldValue");
+        }
+        //确认编辑
+        function doEdit(athis) {
+
+            var doEditTr = athis.parentNode.parentNode;
+            //得到当前编辑数据的id
+            var editTrId = doEditTr.childNodes[0].innerHTML;
+            //得到编辑后对象
+            var newEditObj = {
+                id: editTrId,
+                pName: editInputPname.value,
+                orgid: editSelectOrg.value,
+                money: editInputMoney.value,
+                date: editInputDate.value
+            }
+            updateMoneyObj(editTrId, newEditObj);
+
+            loadMoneyListDate(reloadData());
+            oldEditTr = null;
+        }
+        window.onload = function () {
+            //加载下拉框数据
+            loadSelectObjData(gel("s_select"));
+            loadSelectObjData(gel("addselect"));
+            //计算总页数
+            getCount();
+            //加载表格数据
+            loadMoneyListDate(getNextPageData());
+
+            //给新增按钮添加事件
+            gel("addBtn").onclick = addMoneyListObj;
+            //给查询按钮绑定事件
+            gel("select_btn").onclick = selectMoneyList;
+            //下一页的按钮数据
+            gel("nextpage").onclick = function () {
+                var pageData = getNextPageData();
+                //判断返回的数据是不是空 ，如果不是空加载数据
+                if (pageData) {
+                    EmptyTable();
+                    loadMoneyListDate(pageData);
+                }
+
+            }
+            //上一页的按钮事件
+            gel("prepage").onclick = function () {
+                var pageData = getPrePageData();
+                //判断返回的数据是不是空 ，如果不是空加载数据
+                if (pageData) {
+                    EmptyTable();
+                    loadMoneyListDate(pageData);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1 style="text-align: center; font-size: 30px; font-weight: 900; margin-top: 50px; margin-bottom: 30px;">捐款管理</h1>
+    <div class="border_div">
+        捐款单位:
+        <select id="s_select">
+            <option value="-1">--请选择--</option>
+        </select>
+        <input type="button" value="查　询" id="select_btn" />
+        <input type="button" value="上一页" id="prepage" />
+        <input type="button" value="下一页" id="nextpage" />
+        当前页:<span id="pageindex"></span>/总页数:<span id="count"></span>
+    </div>
+    <div class="border_div">
+        捐款人:<input class="addinput" id="pname" />
+        单　位:<select class="addinput" id="addselect"></select>
+        金　额:<input class="addinput" id="money" />
+        时　间:<input class="addinput" data-options="editable:false" id="date" />
+        <input type="button" id="addBtn" value="新　增" style="width: 80px;" />
+    </div>
+    <table id="dataGrid" border="1">
+        <thead>
+            <tr>
+                <th>序号
+                </th>
+                <th>捐款人
+                </th>
+                <th>捐款单位
+                </th>
+                <th>金额
+                </th>
+                <th>时间
+                </th>
+                <th>操作
+                </th>
+            </tr>
+        </thead>
+        <tbody id="t_body">
+        </tbody>
+    </table>
+</body>
+</html>
+

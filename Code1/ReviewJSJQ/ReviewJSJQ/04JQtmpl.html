@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <script src="js/jquery.tmpl.min.js"></script>
+    <style type="text/css">
+        #myT {
+            border:1px solid #0094ff;width:500px;height:100px;
+            margin:50px auto;
+            border-collapse:collapse;
+        }
+        #myT td {
+            border:1px solid #0094ff;
+            text-align:center;
+            padding:5px;
+        }
+    </style>
+
+    <script id="myTmpl" type="text/x-jquery-tmpl">
+        <tr>
+            <td>${id}</td>
+            <td>${name}</td>
+            <td><a href='#?id=${id}'>删</a></td>
+        </tr>
+    </script>
+
+    <script type="text/javascript">
+        var usrData = [
+            { "id": 1, "name": "小白" },
+            { "id": 2, "name": "小白2" },
+            { "id": 3, "name": "小白3" }
+        ];
+
+        $(function () {
+            //找到模板，循环 数组，并根据模板生成html代码，追加到id=myT的表格里
+            $("#myTmpl").tmpl(usrData).appendTo("#myT");
+
+            //var tbObj = document.getElementById("myT");
+
+            //for (var i = 0; i < usrData.length; i++) {
+            //    var usr = usrData[i];
+            //    //document.createElement("tr");
+            //    var newRow = tbObj.insertRow(-1);
+            //    newRow.insertCell(-1).innerHTML = usr.id;
+            //    newRow.insertCell(-1).innerHTML = usr.name;
+            //    newRow.insertCell(-1).innerHTML = "<a href='#'>删</a>";
+
+            //}
+        });
+    </script>
+</head>
+<body>
+    <input type="button" id="btnTest" value="测试"/>
+    <table id="myT">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>操作</td>
+        </tr>
+    </table>
+</body>
+</html>

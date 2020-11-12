@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <!--新建一个 <li>广州</li> 节点, 将该节点插入到 <li>北京</li> 节点之前？
+点击任意<li>，与后面一个<li>交换？
+双击任意一个li对其内容进行修改？-->
+    <script>
+        var ulEle;
+        window.onload = function () {
+            ulEle = document.getElementById("c_ul");
+            var beijinliEle = document.getElementById("beijin")
+            //01新建一个 <li>广州</li> 节点, 将该节点插入到 <li>北京</li> 节点之前？
+            //var gzli = document.createElement("li");
+            //gzli.innerHTML = "广州";
+            ////insertBefore把元素插入到指定元素前，第一个是要插入的元素，第二个参数是目标元素
+            //ulEle.insertBefore(gzli, beijinliEle);
+            // 02点击任意<li>，与后面一个<li>交换
+            //var lis = document.getElementsByTagName("li");
+            //for (var i = 0; i < lis.length; i++) {
+            //    lis[i].onclick = jiaoHuan;
+            //}
+            //03双击任意一个li对其内容进行修改？
+	    var isEdit = false;//状态标志
+            var lis = document.getElementsByTagName("li");
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].ondblclick = edit;
+            }
+        }
+        function edit() {
+            // if (!isEdit) {
+            var livalue = this.innerHTML;//得到当前li的值
+            //设置li的内容为input
+            this.innerHTML =
+                "<input value='" + livalue + " ' ondblclick='event.stopPropagation()''/>";
+            isEdit = true;//把记录是否编辑的变量设置true
+            // }
+        }
+        function doEdit(inputThis) {//确认编辑方法 在失去焦点的时候触发
+            //得到文本框中值 也就修改后的值
+            var newValue = inputThis.value;
+            //用修改后的值替换li中的内容
+            inputThis.parentNode.innerHTML = newValue;
+            //将记录是否编辑的变量设置false;
+            isEdit = false;
+        }
+        //交换方法
+        function jiaoHuan() {
+
+            //得到下一个兄弟节点 ，也就是要交换的元素
+            var nextEle = this.nextElementSibling;
+            if (nextEle) {
+                //将得到的元素插入到自己的前面，这样就能实现换位效果
+                ulEle.insertBefore(nextEle, this);
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <ul id="c_ul">
+        <li id="beijin">北京</li>
+        <li id="Li1">北京1</li>
+        <li id="Li2">北京2</li>
+        <li id="Li3">北京3</li>
+        <li id="Li4">北京4</li>
+    </ul>
+</body>
+</html>

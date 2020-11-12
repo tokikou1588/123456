@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+        div {
+            padding: 30px;
+            border: 1px solid #000;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            //event 这个东西是浏览器再调用事件的时候参入的一个对象，这个对象包含了很多属性方法
+            //document.getElementById("inp").onclick = function (event) {
+            //    alert(event.clientX);
+            //    alert(event.clientY);
+            //    alert(event.type);
+            //}
+            //document.getElementById("mya").onclick = function (event) {
+            //    //取消元素的默认行为
+            //    event.preventDefault();
+            //}
+            var divs = document.getElementsByTagName("div");
+            for (var i = 0; i < divs.length; i++) {
+                divs[i].onclick = function (event) {
+                    //alert(this.id);
+                    //if (this.id == "div2") {
+                    //    //stopPropagation 阻止冒泡
+                    //    event.stopPropagation();
+                    //}
+                    //target 事件源对象
+                    //currentTarget 当前执行事件的元素
+                    alert("target:" + event.target.id);
+                    alert("currentTarget" + event.currentTarget.id);
+                }
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <input id="inp" type="text" />
+    <a id="mya" href="大练习编辑-处理下拉框.html">编辑</a>
+    <div id="div1">
+        div1
+        <div id="div2">
+            div2
+            <div id="div3">
+                div3
+            </div>
+        </div>
+    </div>
+</body>
+</html>

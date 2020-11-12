@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+        p {
+            border: 1px solid #f00;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            //DocumentFragment 文档片段， 作为一个临时存储
+            start = new Date().getSeconds();
+            var fra = document.createDocumentFragment();
+            for (var i = 0; i < 100000; i++) {
+                var p = document.createElement("p");
+                p.innerHTML = i + "22342342423424";
+                fra.appendChild(p);
+            }
+            document.body.appendChild(fra);
+            end = new Date().getSeconds();
+
+            alert(end - start);
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

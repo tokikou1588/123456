@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+        div {
+            padding: 30px;
+            border: 1px solid #000;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            //onclick 这样的事件属性的事件就叫0级事件
+
+            //document.getElementById("div1").onclick = function () {
+            //    alert("div1的事件111");
+            //}
+            //addEventListener 注册一个2级事件，使用2级事件，能给元素注册多个同名事件 
+            //第一个参数 事件类型， 也就是事件属性去on的名字
+            //第二参数是事件的处理方法 
+            //0级事件会先执行二级会按照注册顺序执行
+            var div1 = document.getElementById("div1");
+            //div1.addEventListener("click", function () { alert("第二个事件") }, false);
+            //div1.addEventListener("click", function () { alert("第一个事件") }, false);
+
+            //document.getElementById("div1").onclick = function () {
+            //    alert("div1的事件");
+            //}
+
+            var divs = document.getElementsByTagName("div");
+            for (var i = 0; i < divs.length; i++) {
+                divs[i].onclick = function (event) {
+                    alert("0级:" + this.id);
+                }
+                divs[i].addEventListener("click", fun, true)
+            }
+            //removeEventListener 删除二级事件
+            // div1.removeEventListener("click", fun, true);
+        }
+        function fun() {
+            alert("2级:" + this.id);
+        }
+    </script>
+
+</head>
+
+<body>
+    <input id="inp" type="text" />
+    <a id="mya" href="大练习编辑-处理下拉框.html">编辑</a>
+    <div id="div1">
+        div1
+        <div id="div2">
+            div2
+            <div id="div3">
+                div3
+            </div>
+        </div>
+    </div>
+</body>
+</html>

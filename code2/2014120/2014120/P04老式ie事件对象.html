@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+        div {
+            padding: 30px;
+            border: 1px solid #000;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var aEle = document.getElementById("mya");
+            //在老式ie中(ie9以前) 通过参数的形式是得不到事件对象的
+            //document.onclick = function (event) {
+            //    //alert(window.event.button)
+            //    //returnValue 老式ie中取消默认行为的方式
+            //    window.event.returnValue = false;
+            //    //clientX
+            //    //clientY 鼠标点击位置
+            //    alert(event.clientX + "--" + event.clientY);
+            //}
+            aEle.onclick = quxiaomorenxingwei;
+        }
+
+        function quxiaomorenxingwei() {
+            if (window.event.preventDefault) {
+                window.event.preventDefault()
+            } else {
+                window.event.returnValue = false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <a id="mya" href="http://www.baidu.com">点击</a>
+    <div id="div1">
+        div1
+        <div id="div2">
+            div2
+            <div id="div3">
+                div3
+            </div>
+        </div>
+    </div>
+</body>
+</html>

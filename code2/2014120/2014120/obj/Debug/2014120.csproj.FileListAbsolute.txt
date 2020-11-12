@@ -1,0 +1,5 @@
+F:\class\11class\2014-1-20大练习\code\2014120\2014120\bin\2014120.dll
+F:\class\11class\2014-1-20大练习\code\2014120\2014120\bin\2014120.pdb
+F:\class\11class\2014-1-20大练习\code\2014120\2014120\obj\Debug\2014120.csprojResolveAssemblyReference.cache
+F:\class\11class\2014-1-20大练习\code\2014120\2014120\obj\Debug\2014120.dll
+F:\class\11class\2014-1-20大练习\code\2014120\2014120\obj\Debug\2014120.pdb

@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <style type="text/css">
+        #divTest {
+            border:1px solid #0094ff;width:500px;height:100px;
+        }
+    </style>
+    <script type="text/javascript">
+        function doClick() {
+            var txtN = document.getElementById("txt");
+            //alert("被点击啦：" + typeof (txtN.type));
+
+            //var clickObj = txtN.onclick;
+            //alert(clickObj instanceof Function);
+
+            //var styleObj = txtN.style;
+            //alert(styleObj);
+
+            //var childs = document.getElementById("selNation").childNodes;
+            
+            //for (var i = 0; i < childs.length; i++)
+            //{
+            //    var son = childs[i];
+            //    if (son.nodeType == 1)
+            //    {
+            //        son.innerHTML = son.innerHTML + "2014";
+            //    }
+            //}
+
+            //var rdoObj = document.getElementById("rdoG");
+            //var attrValue= rdoObj.type
+            //var attrValue = rdoObj.getAttribute("type");
+            //alert(attrValue);
+
+            //rdoObj.xiaobai = "小白~~~";
+            //alert(rdoObj.xiaobai);
+
+            //rdoObj.setAttribute("xiaobai", "小白~~");
+
+            //var opt = document.createElement("option");
+            //var opt = new Option("美国", "2");
+            //document.getElementById("selNation").appendChild(opt);
+            //document.getElementById("selNation").options.add(opt);
+
+            //var optC=document.getElementById("optChina");
+            //document.getElementById("selNation").insertBefore(opt, optC);
+
+            document.getElementById("divTest").innerHTML = "<h1>小白，我爱你~~！</h1>";
+        }
+    </script>
+</head>
+<body>
+    <select id="selNation">
+        <option id="optChina">中国</option>
+        <option>俄罗斯</option>
+    </select>
+
+    <input type="text" id="txt" onclick="doClick()" style="border:5px solid #0094ff;" />
+    <input type="radio" id="rdoG" />
+    <div id="divTest"></div>
+</body>
+</html>
